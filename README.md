@@ -7,7 +7,18 @@
 
 ***
 
+#### 项目组成（Items）
+
+|                    | Gitee                                                        | Github                                                       |
+| :----------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| 后端（back end）   | [gitee/iboot](https://gitee.com/lemonpy/iboot)               | [github/iboot](https://github.com/Zon-g/iboot)               |
+| 前端（front end）  | [gitee/iboot-web](https://gitee.com/lemonpy/iboot-web)       | [github/iboot-web](https://github.com/Zon-g/iboot-web)       |
+| 附件（attachment） | [gitee/iboot-attachment](https://gitee.com/lemonpy/iboot-attachment) | [github/iboot-attachment](https://github.com/Zon-g/iboot-attachment) |
+
+***
+
 #### 软件架构（Software Architecture）
+
 > * src
 >   * api	----	api接口
 >   * assets	----	静态资源
@@ -51,6 +62,17 @@
 > 3. run `npm install` to import the dependencies.
 > 4. run `npm run serve` to start the application.
 > 5. run `npm run build` to pack the application.
+
+***
+
+#### 系统界面（The Iboot）
+
+| ![](https://gitee.com/lemonpy/iboot/raw/master/pics/001.png) | ![](https://gitee.com/lemonpy/iboot/raw/master/pics/002.png) |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+| ![](https://gitee.com/lemonpy/iboot/raw/master/pics/003.png) | ![](https://gitee.com/lemonpy/iboot/raw/master/pics/004.png) |
+| ![](https://gitee.com/lemonpy/iboot/raw/master/pics/005.png) | ![](https://gitee.com/lemonpy/iboot/raw/master/pics/006.png) |
+| ![](https://gitee.com/lemonpy/iboot/raw/master/pics/007.png) | ![](https://gitee.com/lemonpy/iboot/raw/master/pics/008.png) |
+| ![](https://gitee.com/lemonpy/iboot/raw/master/pics/009.png) | ![](https://gitee.com/lemonpy/iboot/raw/master/pics/010.png) |
 
 ***
 
