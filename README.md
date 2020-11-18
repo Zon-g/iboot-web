@@ -9,11 +9,12 @@
 
 #### 项目组成（Items）
 
-|                    | Gitee                                                        | Github                                                       |
-| :----------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| 后端（back end）   | [gitee/iboot](https://gitee.com/lemonpy/iboot)               | [github/iboot](https://github.com/Zon-g/iboot)               |
-| 前端（front end）  | [gitee/iboot-web](https://gitee.com/lemonpy/iboot-web)       | [github/iboot-web](https://github.com/Zon-g/iboot-web)       |
-| 附件（attachment） | [gitee/iboot-attachment](https://gitee.com/lemonpy/iboot-attachment) | [github/iboot-attachment](https://github.com/Zon-g/iboot-attachment) |
+|                      | Gitee                                                        | Github                                                       |
+| -------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 后端（back end）     | [gitee/iboot](https://gitee.com/lemonpy/iboot)               | [github/iboot](https://github.com/Zon-g/iboot)               |
+| 前端（front end）    | [gitee/iboot-web](https://gitee.com/lemonpy/iboot-web)       | [github/iboot-web](https://github.com/Zon-g/iboot-web)       |
+| 附件（attachment）   | [gitee/iboot-attachment](https://gitee.com/lemonpy/iboot-attachment) | [github/iboot-attachment](https://github.com/Zon-g/iboot-attachment) |
+| admin-UI（admin-UI） | [gitee/iboot-admin](https://gitee.com/lemonpy/iboot-admin)   | [github/iboot-admin](https://github.com/Zon-g/iboot-admin)   |
 
 ***
 
