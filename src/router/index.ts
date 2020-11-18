@@ -111,6 +111,11 @@ const routes: Array<RouteConfig> = [
                 path: '/attachment',
                 name: 'Attachment',
                 component: () => import('../views/Maintenance/Attachment.vue')
+            },
+            {
+                path: '/actuator',
+                name: 'Actuator',
+                component: () => import('../views/Maintenance/Actuator.vue')
             }
         ]
     }
