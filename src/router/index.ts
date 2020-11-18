@@ -52,7 +52,25 @@ const routes: Array<RouteConfig> = [
             {
                 path: '/redis',
                 name: 'Redis',
-                component: () => import('../views/Maintenance/Redis.vue')
+                component: () => import('../views/Maintenance/Redis.vue'),
+                redirect: '/RedisIndex',
+                children: [
+                    {
+                        path: '/redisIndex',
+                        name: 'Index',
+                        component: () => import('../views/Maintenance/Index.vue')
+                    },
+                    {
+                        path: '/parameter',
+                        name: 'Parameter',
+                        component: () => import('../views/Maintenance/Parameters.vue')
+                    },
+                    {
+                        path: '/cache',
+                        name: 'Cache',
+                        component: () => import('../views/Maintenance/Cache.vue')
+                    }
+                ]
             },
             {
                 path: '/swagger',
