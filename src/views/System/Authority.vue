@@ -39,7 +39,7 @@
                     </template>
                 </el-table-column>
                 <el-table-column prop="orderNum" label="排序" width="100"/>
-                <el-table-column prop="disabled" label="是否禁用" width="80">
+                <el-table-column prop="disabled" label="是否禁用" width="100">
                     <template slot-scope="scope">
                         {{ scope.row.disabled === false ? '否' : '是' }}
                     </template>

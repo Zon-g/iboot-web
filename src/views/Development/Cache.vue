@@ -3,7 +3,9 @@
         <el-row style="margin-top: 1px;" :gutter="10">
             <el-col>
                 <el-button icon="el-icon-refresh" type="success" @click="getKeys">刷新</el-button>
-                <el-button icon="el-icon-delete" type="danger" @click="deleteAll">清除</el-button>
+                <el-button icon="el-icon-delete" type="danger" @click="deleteAll" v-has-permission="'cache:delete'">
+                    清除
+                </el-button>
             </el-col>
         </el-row>
         <el-row style="margin-top: 1px;" :gutter="10">
@@ -19,7 +21,8 @@
                             <el-button size="mini" icon="el-icon-view" type="primary"
                                        @click="getKey(scope.row.key, scope.row.type)"/>
                             <el-button size="mini" icon="el-icon-edit" type="warning"
-                                       @click="updateKey(scope.row.key, scope.row.type)"/>
+                                       @click="updateKey(scope.row.key, scope.row.type)"
+                                       v-has-permission="'cache:update'"/>
                             <el-button size="mini" icon="el-icon-delete" type="danger"
                                        @click="deleteKey(scope.row.key)"/>
                         </template>

@@ -47,40 +47,40 @@ const routes: Array<RouteConfig> = [
             {
                 path: '/SQL',
                 name: 'SQLMonitor',
-                component: () => import('../views/Maintenance/Druid.vue')
+                component: () => import('../views/Development/Druid.vue')
             },
             {
                 path: '/redis',
                 name: 'Redis',
-                component: () => import('../views/Maintenance/Redis.vue'),
+                component: () => import('../views/Development/Redis.vue'),
                 redirect: '/RedisIndex',
                 children: [
                     {
                         path: '/redisIndex',
                         name: 'Index',
-                        component: () => import('../views/Maintenance/Index.vue')
+                        component: () => import('../views/Development/Index.vue')
                     },
                     {
                         path: '/parameter',
                         name: 'Parameter',
-                        component: () => import('../views/Maintenance/Parameters.vue')
+                        component: () => import('../views/Development/Parameters.vue')
                     },
                     {
                         path: '/cache',
                         name: 'Cache',
-                        component: () => import('../views/Maintenance/Cache.vue')
+                        component: () => import('../views/Development/Cache.vue')
                     }
                 ]
             },
             {
                 path: '/swagger',
                 name: 'APIDocument',
-                component: () => import('../views/Maintenance/Swagger.vue')
+                component: () => import('../views/Development/Swagger.vue')
             },
             {
                 path: '/knife4j',
                 name: 'KnifeDocument',
-                component: () => import('../views/Maintenance/Knife4j.vue')
+                component: () => import('../views/Development/Knife4j.vue')
             },
             {
                 path: '/backup',
@@ -115,7 +115,17 @@ const routes: Array<RouteConfig> = [
             {
                 path: '/actuator',
                 name: 'Actuator',
-                component: () => import('../views/Maintenance/Actuator.vue')
+                component: () => import('../views/Development/Actuator.vue')
+            },
+            {
+                path: '/job',
+                name: 'Job',
+                component: () => import('../views/Maintenance/Job.vue')
+            },
+            {
+                path: '/mail',
+                name: 'Mail',
+                component: () => import('../views/Basic/Mail.vue')
             }
         ]
     }

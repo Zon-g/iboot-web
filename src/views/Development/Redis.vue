@@ -2,7 +2,7 @@
     <div>
         <el-breadcrumb separator="/" style="padding-left: 10px; padding-bottom: 10px; font-size: 12px;">
             <el-breadcrumb-item :to="{ path: '/main' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item>运维管理</el-breadcrumb-item>
+            <el-breadcrumb-item>开发管理</el-breadcrumb-item>
             <el-breadcrumb-item>Redis监控</el-breadcrumb-item>
         </el-breadcrumb>
 

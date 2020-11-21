@@ -46,8 +46,8 @@
                         {{ scope.row.status === 1 ? "否" : "是" }}
                     </template>
                 </el-table-column>
-                <el-table-column prop="createTime" label="创建时间"/>
-                <el-table-column prop="modifyTime" label="修改时间"/>
+                <el-table-column prop="createTime" label="创建时间" width="400"/>
+                <el-table-column prop="modifyTime" label="修改时间" width="400"/>
                 <el-table-column label="操作" fixed="right" width="175">
                     <template slot-scope="scope">
                         <el-button type="primary" size="mini" icon="el-icon-edit" v-has-permission="'role:update'"

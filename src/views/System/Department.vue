@@ -49,9 +49,9 @@
                 <el-table-column prop="id" label="部门id" width="70" fixed/>
                 <el-table-column prop="name" label="部门名称" width="200" fixed/>
                 <el-table-column prop="phone" label="部门电话" width="200"/>
-                <el-table-column prop="address" label="部门地址" width="200"/>
-                <el-table-column prop="createTime" label="记录创建时间"/>
-                <el-table-column prop="modifyTime" label="记录修改时间"/>
+                <el-table-column prop="address" label="部门地址" width="500"/>
+                <el-table-column prop="createTime" label="记录创建时间" width="400"/>
+                <el-table-column prop="modifyTime" label="记录修改时间" width="400"/>
                 <el-table-column label="操作" fixed="right" width="120">
                     <template slot-scope="scope">
                         <el-button type="primary" size="mini" icon="el-icon-edit"
