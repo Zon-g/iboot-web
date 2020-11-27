@@ -78,7 +78,7 @@
                 </el-form>
                 <div slot="footer" class="dialog-footer">
                     <el-button @click="cancel" size="small">取消</el-button>
-                    <el-button type="primary" @click="submit" size="small">确定</el-button>
+                    <el-button type="primary" @click="submit('role')" size="small">确定</el-button>
                 </div>
             </el-dialog>
 
@@ -235,7 +235,16 @@ export default {
             this.showForm = false;
             this.updateFlag = false;
         },
-        async submit() {
+        submit(form) {
+            this.$refs[form].validate(valid => {
+                if (valid) {
+                    this.doSubmit();
+                } else {
+                    this.$message.info('参数校验未通过, 请重新输入');
+                }
+            });
+        },
+        async doSubmit() {
             if (this.updateFlag) {
                 await updateRole(this.role).then(res => {
                     if (res.data.code === 200) {

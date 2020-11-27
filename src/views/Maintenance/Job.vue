@@ -78,7 +78,7 @@
                 </el-form>
                 <div slot="footer" class="dialog-footer">
                     <el-button @click="cancel" size="small">取消</el-button>
-                    <el-button @click="submit" size="small" type="primary">确定</el-button>
+                    <el-button @click="submit('job')" size="small" type="primary">确定</el-button>
                 </div>
             </el-dialog>
         </el-card>
@@ -188,7 +188,16 @@ export default {
             }).catch(error => console.log(error));
             this.getJobList();
         },
-        async submit() {
+        submit(form) {
+            this.$refs[form].validate(valid => {
+                if (valid) {
+                    this.doSubmit();
+                } else {
+                    this.$message.info('参数校验未通过, 请重新输入');
+                }
+            });
+        },
+        async doSubmit() {
             await saveJob(this.job).then(res => {
                 if (res.data.code === 200) {
                     this.$message({

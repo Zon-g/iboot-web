@@ -159,7 +159,7 @@
                 </el-form>
                 <div slot="footer" class="dialog-footer">
                     <el-button @click="cancel" size="small">取消</el-button>
-                    <el-button type="primary" @click="submit" size="small">确定</el-button>
+                    <el-button type="primary" @click="submit('user')" size="small">确定</el-button>
                 </div>
             </el-dialog>
 
@@ -172,7 +172,7 @@
             </el-dialog>
 
             <el-dialog :visible.sync="resetPwd" title="设置用户密码">
-                <el-form :model="resetPwdForm" res="resetPwd" label-width="100px" class="demo-ruleForm">
+                <el-form :model="resetPwdForm" ref="resetPwd" label-width="100px" class="demo-ruleForm">
                     <el-form-item label="用户id" size="small">
                         <el-input :readonly="true" v-model="resetPwdForm.id"/>
                     </el-form-item>
@@ -374,7 +374,19 @@ export default {
             }
             this.showForm = false;
         },
-        async submit() {
+        submit(form) {
+            this.$refs[form].validate(valid => {
+                if (valid) {
+                    this.doSubmit();
+                } else {
+                    this.$message({
+                        message: '参数校验未通过, 请重新输入',
+                        type: 'info'
+                    });
+                }
+            })
+        },
+        async doSubmit() {
             if (this.user.id != null) {
                 await updateUser(this.user).then(res => {
                     if (res.data.code === 200) {
