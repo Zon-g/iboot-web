@@ -208,7 +208,7 @@ export default {
             resetPwd: false,
             curUserId: -1,
             configUser: false,
-            selected: [1, 3],
+            selected: [],
             roleList: [],
             loading: true,
             user: {
@@ -408,6 +408,7 @@ export default {
             }
             this.cancel();
             await this.getUserList();
+            await this.getDepartments();
         },
         reset() {
             this.form = {

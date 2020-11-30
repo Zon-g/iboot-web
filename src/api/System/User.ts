@@ -128,3 +128,10 @@ export const verifyPwd = (id: number, password: string) => {
         }
     });
 };
+
+export const userMailList = () => {
+    return request({
+        url: '/user/userMailList',
+        method: 'get'
+    });
+};

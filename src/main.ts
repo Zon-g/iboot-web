@@ -8,10 +8,13 @@ import store from './store'
 import './plugins/element.js'
 import './assets/css/global.css'
 import moment from 'moment/moment'
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.prototype.$moment = moment
+Vue.use(mavonEditor)
 
 new Vue({
     router,

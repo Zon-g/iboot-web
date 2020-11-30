@@ -1,31 +1,38 @@
 <template>
-    <div class="login_container">
-        <div class="login_box">
-            <div class="avatar_box">
-                <img src="../assets/logo.png">
+    <div style="width: 100%; height: 100%;">
+        <div class="outer_box">
+            <div class="login_container">
+                <div class="login_box">
+                    <div class="avatar_box">
+                        <img src="../assets/logo.png">
+                    </div>
+                    <el-form :model="loginForm" :rules="loginRules" ref="loginForm" label-width="0px"
+                             class="login-form">
+                        <el-form-item prop="username">
+                            <el-input v-model="loginForm.username" prefix-icon="el-icon-user-solid"/>
+                        </el-form-item>
+                        <el-form-item prop="password">
+                            <el-input v-model="loginForm.password" prefix-icon="el-icon-lock" type="password"/>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-row>
+                                <el-col :span="12">
+                                    <el-checkbox v-model="loginForm.rememberMe">记住我</el-checkbox>
+                                </el-col>
+                                <el-col :span="12">
+                                    <div class="login_button">
+                                        <el-button type="primary" @click="login('loginForm')">登录</el-button>
+                                        <el-button @click="cancel('loginForm')">取消</el-button>
+                                    </div>
+                                </el-col>
+                            </el-row>
+                        </el-form-item>
+                    </el-form>
+                </div>
             </div>
-            <el-form :model="loginForm" :rules="loginRules" ref="loginForm" label-width="0px" class="login-form">
-                <el-form-item prop="username">
-                    <el-input v-model="loginForm.username" prefix-icon="el-icon-user-solid"/>
-                </el-form-item>
-                <el-form-item prop="password">
-                    <el-input v-model="loginForm.password" prefix-icon="el-icon-lock" type="password"/>
-                </el-form-item>
-                <el-form-item>
-                    <el-row>
-                        <el-col :span="12">
-                            <el-checkbox v-model="loginForm.rememberMe">记住我</el-checkbox>
-                        </el-col>
-                        <el-col :span="12">
-                            <div class="login_button">
-                                <el-button type="primary" @click="login('loginForm')">登录</el-button>
-                                <el-button @click="cancel('loginForm')">取消</el-button>
-                            </div>
-                        </el-col>
-                    </el-row>
-                </el-form-item>
-            </el-form>
         </div>
+        <div class="footer"/>
+        <div class="bottom"/>
     </div>
 </template>
 
@@ -86,9 +93,45 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.bottom {
+    width: 20%;
+    height: 2%;
+    background-color: slategray;
+    position: absolute;
+    left: 50%;
+    top: 95%;
+    transform: translate(-50%, -50%);
+}
+
+.footer {
+    width: 5%;
+    height: 30%;
+    background-color: slategray;
+    position: absolute;
+    left: 50%;
+    top: 80%;
+    transform: translate(-50%, -50%);
+}
+
+.outer_box {
+    width: 70%;
+    height: 70%;
+    background-color: black;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2020;
+}
+
 .login_container {
-    height: 100%;
+    width: 98%;
+    height: 96%;
     background-color: aquamarine;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .login_box {

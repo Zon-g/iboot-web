@@ -219,7 +219,6 @@ export default {
                     this.user.avatar = res.data.data.path;
                     let len = this.user.avatar.split('\\').length;
                     this.avatarURL = 'http://localhost:8080/api/avatar/' + this.user.avatar.split('\\')[len - 1];
-                    console.log(this.avatarURL);
                     this.uploadAvatar = false;
                     this.$refs.upload.uploadFiles.length = 0;
                 }
