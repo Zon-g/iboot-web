@@ -104,6 +104,26 @@
                             </template>
                         </el-input>
                     </el-form-item>
+                    <el-form-item label="定时发送" size="small">
+                        <el-row>
+                            <el-col :span="2">
+                                <el-switch v-model="email.scheduled === 1"
+                                           active-color="#13ce66"
+                                           inactive-color="#ff4949"
+                                           @change="changeEmailScheduledStatus"/>
+                            </el-col>
+                            <el-col :span="22">
+                                <el-date-picker v-if="email.scheduled === 1"
+                                                v-model="email.scheduleTime"
+                                                type="datetime"
+                                                placeholder="选择日期时间"
+                                                align="right"
+                                                :picker-options="pickerOptions2"
+                                                value-format="yyyy-MM-dd HH:mm:ss">
+                                </el-date-picker>
+                            </el-col>
+                        </el-row>
+                    </el-form-item>
                 </el-form>
                 <div slot="footer" class="dialog-footer">
                     <el-button size="small" @click="cancelEmail">取消</el-button>
@@ -170,7 +190,9 @@ export default {
                 to: [],
                 subject: '',
                 content: '',
-                html: ''
+                html: '',
+                scheduled: 0,
+                scheduleTime: ''
             },
             emailRules: {
                 to: [
@@ -190,6 +212,28 @@ export default {
                 from: '',
                 to: '',
                 dateRange: []
+            },
+            pickerOptions2: {
+                shortcuts: [{
+                    text: '今天',
+                    onClick(picker) {
+                        picker.$emit('pick', new Date());
+                    }
+                }, {
+                    text: '昨天',
+                    onClick(picker) {
+                        const date = new Date();
+                        date.setTime(date.getTime() - 3600 * 1000 * 24);
+                        picker.$emit('pick', date);
+                    }
+                }, {
+                    text: '一周前',
+                    onClick(picker) {
+                        const date = new Date();
+                        date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+                        picker.$emit('pick', date);
+                    }
+                }]
             },
             pickerOptions: {
                 shortcuts: [{
@@ -224,6 +268,9 @@ export default {
         this.getPage();
     },
     methods: {
+        changeEmailScheduledStatus() {
+            this.email.scheduled ^= 1;
+        },
         handleFileRemove() {
             this.$message({
                 message: '已删除所选文件',
@@ -358,7 +405,9 @@ export default {
                 to: [],
                 subject: '',
                 content: '',
-                html: ''
+                html: '',
+                scheduled: 0,
+                scheduleTime: ''
             }
             this.showForm = false
             this.selected = []
@@ -380,7 +429,19 @@ export default {
                 toName: this.email.toName,
                 to: this.email.to,
                 subject: this.email.subject,
-                text: this.email.html
+                text: this.email.html,
+                scheduled: this.email.scheduled,
+                scheduleTime: this.email.scheduleTime
+            }
+            if (entity.scheduled === 1) {
+                let time = entity.scheduleTime;
+                let len = time.length;
+                entity.scheduleTime = time.substring(len - 2, len) + ' ';
+                entity.scheduleTime += time.substring(len - 5, len - 3) + ' ';
+                entity.scheduleTime += time.substring(len - 8, len - 6) + ' ';
+                entity.scheduleTime += time.substring(len - 11, len - 9) + ' ';
+                entity.scheduleTime += time.substring(len - 14, len - 12) + ' ? ';
+                entity.scheduleTime += time.substring(len - 19, len - 15);
             }
             await addEmail(entity, this.attachments).then(res => {
                 if (res.data.code === 200) {

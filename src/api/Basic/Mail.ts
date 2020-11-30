@@ -15,8 +15,9 @@ export const getPage = (cur: number, size: number, condition: {
 };
 
 export const addEmail = (email: {
-    toName: string, to: Array<string>,
-    subject: string, text: string
+    toName: Array<string>, to: Array<string>,
+    subject: string, text: string,
+    scheduled: number, scheduleTime: string
 }, attachments: string) => {
     return request({
         url: '/mail/add',
