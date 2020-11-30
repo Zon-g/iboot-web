@@ -149,6 +149,7 @@ import {
     verifyPwd
 } from "@/api/System/User";
 import axios from 'axios';
+import {baseURL} from "@/api/BaseURL";
 
 export default {
     name: "Main",
@@ -194,7 +195,7 @@ export default {
                 if (this.$store.state.user.avatar != null) {
                     let arr = this.$store.state.user.avatar.split('\\');
                     let len = arr.length;
-                    this.avatar = 'http://localhost:8080/api/avatar/' + arr[len - 1];
+                    this.avatar = baseURL() + '/avatar/' + arr[len - 1];
                 } else {
                     this.avatar = 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png';
                 }
@@ -208,7 +209,7 @@ export default {
         handleAvatarUpload() {
             let params = new FormData();
             params.append("file", this.$refs.upload.uploadFiles[0].raw);
-            axios.post('http://localhost:8080/api/user/avatarUpload', params, {
+            axios.post(baseURL() + '/user/avatarUpload', params, {
                 headers: {
                     'Content-Type': 'multipart/form-data; charset=utf-8',
                     'Authorization': this.$store.state.token
@@ -218,7 +219,7 @@ export default {
                     this.$message.success('上传头像成功');
                     this.user.avatar = res.data.data.path;
                     let len = this.user.avatar.split('\\').length;
-                    this.avatarURL = 'http://localhost:8080/api/avatar/' + this.user.avatar.split('\\')[len - 1];
+                    this.avatarURL = baseURL() + '/avatar/' + this.user.avatar.split('\\')[len - 1];
                     this.uploadAvatar = false;
                     this.$refs.upload.uploadFiles.length = 0;
                 }
@@ -326,7 +327,7 @@ export default {
                         this.user.avatar = res.data.data.data.avatar;
                         let arr = this.user.avatar.split('\\');
                         let len = arr.length;
-                        this.avatarURL = 'http://localhost:8080/api/avatar/' + arr[len - 1];
+                        this.avatarURL = baseURL() + '/avatar/' + arr[len - 1];
                     }
                     this.user.phone = res.data.data.data.phone;
                     this.user.gender = res.data.data.data.gender + '';

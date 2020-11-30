@@ -31,13 +31,16 @@
                     <el-button icon="el-icon-search" type="primary" @click="getPage">
                         查询记录
                     </el-button>
-                    <el-button icon="el-icon-plus" type="success" @click="showForm = true">
+                    <el-button icon="el-icon-plus" type="success" @click="showForm = true"
+                               v-has-permission="'mail:add'">
                         发送邮件
                     </el-button>
-                    <el-button icon="el-icon-download" type="warning" @click="downloadAsXls">
+                    <el-button icon="el-icon-download" type="warning" @click="downloadAsXls"
+                               v-has-permission="'mail:download'">
                         Xls文件
                     </el-button>
-                    <el-button icon="el-icon-download" type="warning" @click="downloadAsXlsx">
+                    <el-button icon="el-icon-download" type="warning" @click="downloadAsXlsx"
+                               v-has-permission="'mail:download'">
                         Xlsx文件
                     </el-button>
                 </el-form-item>
@@ -63,9 +66,11 @@
                 <el-table-column label="操作" width="180" fixed="right">
                     <template slot-scope="scope">
                         <el-button icon="el-icon-view" type="primary" size="mini"
-                                   @click="viewRecord(scope.row)"/>
+                                   @click="viewRecord(scope.row)"
+                                   v-has-permission="'mail:view'"/>
                         <el-button icon="el-icon-delete" type="danger" size="mini"
-                                   @click="deleteMail(scope.row.id)"/>
+                                   @click="deleteMail(scope.row.id)"
+                                   v-has-permission="'mail:delete'"/>
                     </template>
                 </el-table-column>
             </el-table>
@@ -93,7 +98,7 @@
                     <el-form-item label="邮件内容" size="small">
                         <mavon-editor v-model="email.content" ref="md"
                                       @change="changeContent" @imgAdd="AddImage"
-                                      style="min-height: 350px"/>
+                                      style="height: 300px"/>
                     </el-form-item>
                     <el-form-item label="附件" size="small">
                         <el-input clearable v-model="attachments">
@@ -173,6 +178,7 @@ import {
     userMailList
 } from "@/api/System/User";
 import axios from 'axios'
+import {baseURL} from "@/api/BaseURL";
 
 export default {
     name: "Mail",
@@ -187,7 +193,7 @@ export default {
             viewEmail: false,
             email: {
                 toName: '',
-                to: [],
+                to: '',
                 subject: '',
                 content: '',
                 html: '',
@@ -282,7 +288,7 @@ export default {
             for (let i = 0; i < this.$refs.upload.uploadFiles.length; i++) {
                 params.append('files', this.$refs.upload.uploadFiles[i].raw);
             }
-            axios.post('http://localhost:8080/api/mail/attachmentUpload', params, {
+            axios.post(baseURL() + '/mail/attachmentUpload', params, {
                 headers: {
                     'Content-Type': 'multipart/form-data; charset=utf-8',
                     'Authorization': this.$store.state.token
@@ -489,7 +495,7 @@ export default {
         AddImage(pos, $file) {
             let formData = new FormData();
             formData.append('file', $file);
-            axios.post('http://localhost:8080/api/mail/imageUpload', formData, {
+            axios.post(baseURL() + '/mail/imageUpload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data; charset=utf-8',
                     'Authorization': this.$store.state.token
@@ -499,7 +505,7 @@ export default {
                     this.$message.success("上传图片成功");
                     let path = res.data.data.path;
                     let len = path.split('\\').length;
-                    let newPath = 'http://localhost:8080/api/mail/' + path.split('\\')[len - 1];
+                    let newPath = baseURL() + '/mail/' + path.split('\\')[len - 1];
                     this.$refs.md.$img2Url(pos, newPath);
                 }
             }).catch(error => console.log(error));

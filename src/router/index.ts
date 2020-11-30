@@ -57,7 +57,7 @@ const routes: Array<RouteConfig> = [
                 children: [
                     {
                         path: '/redisIndex',
-                        name: 'Index',
+                        name: 'RedisIndex',
                         component: () => import('../views/Development/Index.vue')
                     },
                     {
