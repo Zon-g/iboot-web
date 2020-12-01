@@ -1,9 +1,10 @@
 import axios from 'axios'
 import store from '@/store/index'
 import router from "@/router/index";
+import {baseURL} from "@/api/BaseURL";
 
 const request = axios.create({
-    baseURL: '/api',
+    baseURL: baseURL(),
     timeout: 3000,
     withCredentials: true
 });

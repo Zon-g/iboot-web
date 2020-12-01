@@ -7,5 +7,5 @@ export const login = (loginRequest: {
         url: '/auth/login',
         method: 'post',
         data: loginRequest
-    })
-}
+    });
+};
