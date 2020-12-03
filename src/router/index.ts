@@ -126,6 +126,11 @@ const routes: Array<RouteConfig> = [
                 path: '/mail',
                 name: 'Mail',
                 component: () => import('../views/Basic/Mail.vue')
+            },
+            {
+                path: '/markdown',
+                name: 'Markdown',
+                component: () => import('../views/Component/Markdown.vue')
             }
         ]
     }
