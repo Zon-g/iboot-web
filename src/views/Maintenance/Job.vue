@@ -18,7 +18,7 @@
                         查询任务
                     </el-button>
                     <el-button icon="el-icon-plus" type="success"
-                               @click="showForm = true" v-has-permission="'job:add'">
+                               @click="addJobs" v-has-permission="'job:add'">
                         添加任务
                     </el-button>
                 </el-form-item>
@@ -70,7 +70,12 @@
                         <el-input v-model="job.description"/>
                     </el-form-item>
                     <el-form-item label="执行类" prop="jobClassName" size="small">
-                        <el-input v-model="job.jobClassName"/>
+                        <el-select v-model="job.jobClassName" placeholder="请选择">
+                            <el-option v-for="job in scheduledJobs"
+                                       :key="job.jobClass"
+                                       :label="job.jobName"
+                                       :value="job.jobClass"/>
+                        </el-select>
                     </el-form-item>
                     <el-form-item label="Cron执行时间" prop="cronExpression" size="small">
                         <el-input v-model="job.cronExpression"/>
@@ -88,13 +93,14 @@
 <script>
 import {
     listJobs, saveJob, execute,
-    pause, resume, remove
+    pause, resume, remove, listScheduledJobs
 } from "@/api/Maintenance/Job";
 
 export default {
     name: "Job",
     data() {
         return {
+            scheduledJobs: [],
             job: {
                 jobName: '',
                 jobGroup: '',
@@ -134,6 +140,14 @@ export default {
         this.getJobList();
     },
     methods: {
+        addJobs() {
+            this.showForm = true;
+            listScheduledJobs().then(res => {
+                if (res.data.code === 200) {
+                    this.scheduledJobs = res.data.data.jobs;
+                }
+            }).catch(error => console.log(error));
+        },
         async remove(jobName, jobGroup) {
             await remove(jobName, jobGroup).then(res => {
                 if (res.data.code === 200) {

@@ -10,6 +10,13 @@ export const listJobs = (jobName: string, cur: number, size: number) => {
     });
 };
 
+export const listScheduledJobs = () => {
+    return request({
+        url: '/job/listJobs',
+        method: 'get',
+    });
+};
+
 export const saveJob = (job: {
     jobName: string, jobGroup: string, description: string,
     jobClassName: string, cronExpression: string
